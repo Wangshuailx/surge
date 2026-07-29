@@ -7,7 +7,11 @@ DOMAIN-SUFFIX,doubleclick.net,REJECT
 DOMAIN-SUFFIX,googleadservices.com,REJECT
 
 [Map Local]
-^https://httpbin\.org/get data-type=text data="hello-surge"
+# 返回一个假网页
+^https://httpbin\.org/get data-type=base64 data="PG1ldGEgY2hhcnNldD0idXRmLTgiPjxoMT5IZWxsbyBTdXJnZTwvaDE+PHA+6L+Z5Liq6aG16Z2i5piv5L2g55qE5qih5Z2X5Lyq6YCg55qEIPCfjok8L3A+PHA+6K+35rGC5qC55pys5rKh5Ye6572R44CCPC9wPg==" header="Content-Type:text/html; charset=utf-8" status-code=200
+
+# 返回一段假 JSON（想试这个就把上面那行注释掉，取消下面这行的注释）
+# ^https://httpbin\.org/get data-type=base64 data="eyJoZWxsbyI6InN1cmdlIiwiZnJvbSI6Im15LWZpcnN0LW1vZHVsZSJ9" header="Content-Type:application/json" status-code=200
 
 [Script]
 打招呼 = type=http-response,pattern=^https://httpbin\.org/anything,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/Wangshuailx/surge/main/hello.js,timeout=10
