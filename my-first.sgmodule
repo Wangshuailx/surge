@@ -1,0 +1,28 @@
+#!name=我的第一个模块
+#!desc=入门练习：拦截域名 / 伪造接口返回 / 脚本改响应
+#!category=测试
+#!system=ios,mac
+#!homepage=https://manual.nssurge.com/others/module.html
+
+# ============ 1. 分流规则（不需要 MITM，装上立刻生效）============
+[Rule]
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
+# DOMAIN-SUFFIX,example.com,PROXY
+
+# ============ 2. Map Local：把请求截胡，直接返回你写的内容 ============
+[Map Local]
+^https:\/\/httpbin\.org\/get data-type=text data="{\"hello\":\"surge\",\"from\":\"my-first-module\"}" status-code=200 header="Content-Type:application/json"
+
+# ============ 3. URL Rewrite：改写 / 拦截请求 ============
+[URL Rewrite]
+# 把 http 强制升级到 https
+# ^http:\/\/(.+)$ https://$1 302
+
+# ============ 4. 脚本：拿到响应体后改内容 ============
+[Script]
+打招呼 = type=http-response,pattern=^https:\/\/httpbin\.org\/anything,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/Wangshuailx/surge/main/hello.js?v=1,timeout=10
+
+# ============ 5. MITM：上面 2/4 想对 https 生效，域名必须写在这 ============
+[MITM]
+hostname = %APPEND% httpbin.org
