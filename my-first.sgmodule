@@ -7,10 +7,10 @@ DOMAIN-SUFFIX,doubleclick.net,REJECT
 DOMAIN-SUFFIX,googleadservices.com,REJECT
 
 [Map Local]
-^https:\/\/httpbin\.org\/get data-type=base64 data=eyJoZWxsbyI6InN1cmdlIiwiZnJvbSI6Im15LWZpcnN0LW1vZHVsZSJ9 status-code=200
+^https://httpbin\.org/get data-type=base64 data=eyJoZWxsbyI6InN1cmdlIiwiZnJvbSI6Im15LWZpcnN0LW1vZHVsZSJ9 status-code=200
 
 [Script]
-打招呼 = type=http-response,pattern=^https:\/\/httpbin\.org\/anything,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/Wangshuailx/surge/main/hello.js,timeout=10
+打招呼 = type=http-response,pattern=^https://httpbin\.org/anything,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/Wangshuailx/surge/main/hello.js,timeout=10
 
 [MITM]
 hostname = %APPEND% httpbin.org
