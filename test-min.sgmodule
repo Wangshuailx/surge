@@ -1,0 +1,6 @@
+#!name=最小测试
+#!desc=只有两条规则，用来确认模块能不能装上
+
+[Rule]
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
