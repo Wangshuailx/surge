@@ -1,9 +1,0 @@
-#!name = KidsRepublic 免手机验证码
-#!desc = 改写 iaeonconnect/login 的 10021 风控响应为成功(状态200 + 仅session_id)，手机登录不跳验证码页
-#!category = 改写
-
-[Script]
-kr-noverify = type=http-response,pattern=^https://aeonapp\.aeon\.com/api/auth/1\.0/iaeonconnect/login,requires-body=1,script-path=https://raw.githubusercontent.com/Wangshuailx/surge/main/kr_noverify.js,timeout=15
-
-[MITM]
-hostname = %APPEND% aeonapp.aeon.com
